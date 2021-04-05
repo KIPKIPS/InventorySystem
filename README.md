@@ -1,2 +1,2 @@
-# BackpackSystem
-基于Unity的背包系统
+# InventorySystem
+基于Unity的物品管理系统
