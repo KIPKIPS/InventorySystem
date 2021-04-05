@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "name": "小号血瓶",
+        "type": "Consumable",
+        "quality": "Common",
+        "description": "这个是用来加血的",
+        "capacity": "10",
+        "buyPrice": "10",
+        "sellPrice": "5",
+        "hp": "20",
+        "mp": "0",
+        "sprite": "ItemIcon/12"
+        
+    },
+    {
+        "id": 2,
+        "name": "中号血瓶",
+        "type": "Consumable",
+        "quality": "Uncommon",
+        "description": "这个是用来加血的",
+        "capacity": "20",
+        "buyPrice": "20",
+        "sellPrice": "10",
+        "hp": "30",
+        "mp": "0",
+        "sprite": "ItemIcon/14"
+    },
+    {
+        "id": 3,
+        "name": "风火轮",
+        "type": "Weapon",
+        "quality": "Common",
+        "description": "哪吒的风火轮",
+        "capacity": "10",
+        "buyPrice": "100",
+        "sellPrice": "50",
+        "sprite": "ItemIcon/134",
+        "damage" : 30,
+        "weaponType" : "MainHand"
+    }
+]
