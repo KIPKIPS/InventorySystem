@@ -13,8 +13,9 @@ public class Item {
     public int Capacity { get; set; }
     public int BuyPrice { get; set; }//购买价格
     public int SellPrice { get; set; }//出售价格
+    public string Sprite { get; set; }
 
-    public Item(int _id, string _name, ItemType _itemType, Quality _qualityType, string _desc, int _capacity, int _buyPrice, int _sellPrice) {
+    public Item(int _id, string _name, ItemType _itemType, Quality _qualityType, string _desc, int _capacity, int _buyPrice, int _sellPrice, string _sprite) {
         ID = _id;
         Name = _name;
         Type = _itemType;
@@ -23,6 +24,11 @@ public class Item {
         Capacity = _capacity;
         BuyPrice = _buyPrice;
         SellPrice = _sellPrice;
+        Sprite = _sprite;
+    }
+
+    public Item() {
+        ID = -1;
     }
 
     public enum ItemType {
