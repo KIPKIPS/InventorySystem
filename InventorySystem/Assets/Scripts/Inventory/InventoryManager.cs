@@ -22,35 +22,35 @@ public class InventoryManager : BaseSingleton<InventoryManager> {
             Item.ItemType type = (Item.ItemType)System.Enum.Parse(typeof(Item.ItemType), typeStr);
 
             //解析公有字段
-            int id = Int32.Parse(jObj.GetValue("id").ToString());
+            int id = int.Parse(jObj.GetValue("id").ToString());
             string name = jObj.GetValue("name").ToString();
             Item.Quality qualityType = (Item.Quality)System.Enum.Parse(typeof(Item.Quality), jObj.GetValue("quality").ToString());
             string description = jObj.GetValue("description").ToString();
-            int capacity = Int32.Parse(jObj.GetValue("capacity").ToString());
-            int buyPrice = Int32.Parse(jObj.GetValue("buyPrice").ToString());
-            int sellPrice = Int32.Parse(jObj.GetValue("sellPrice").ToString());
+            int capacity = int.Parse(jObj.GetValue("capacity").ToString());
+            int buyPrice = int.Parse(jObj.GetValue("buyPrice").ToString());
+            int sellPrice = int.Parse(jObj.GetValue("sellPrice").ToString());
             string sprite = jObj.GetValue("sprite").ToString();
-
+            string iconType = jObj.GetValue("iconType").ToString();
             //构造对象
             Item item = null;
             switch (type) {
                 case Item.ItemType.Consumable:
-                    int hp = Int32.Parse(jObj.GetValue("hp").ToString());
-                    int mp = Int32.Parse(jObj.GetValue("mp").ToString());
-                    item = new Consumable(id, name, type, qualityType, description, capacity, buyPrice, sellPrice, sprite, hp, mp);
+                    int hp = int.Parse(jObj.GetValue("hp").ToString());
+                    int mp = int.Parse(jObj.GetValue("mp").ToString());
+                    item = new Consumable(id, name, type, qualityType, description, capacity, buyPrice, sellPrice, sprite, iconType, hp, mp);
                     break;
                 case Item.ItemType.Equipment:
                     break;
                 case Item.ItemType.Weapon:
-                    int damage = Int32.Parse(jObj.GetValue("damage").ToString());
+                    int damage = int.Parse(jObj.GetValue("damage").ToString());
                     Weapon.WeaponType wType = (Weapon.WeaponType)System.Enum.Parse(typeof(Weapon.WeaponType), jObj.GetValue("weaponType").ToString());
-                    item = new Weapon(id, name, type, qualityType, description, capacity, buyPrice, sellPrice, sprite, damage, wType);
+                    item = new Weapon(id, name, type, qualityType, description, capacity, buyPrice, sellPrice, sprite, iconType, damage, wType);
                     break;
                 case Item.ItemType.Material:
                     break;
             }
             itemList.Add(item);
-            Debug.Log(item.Type);
+            Debug.Log(item.IconType);
         }
     }
 }

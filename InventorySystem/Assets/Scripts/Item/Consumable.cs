@@ -8,9 +8,9 @@ public class Consumable : Item {
     public int HP { get; set; }
     public int MP { get; set; }
     //继承父类的构造方法
-    public Consumable(int _id, string _name, ItemType _itemType, Quality _qualityType, string _desc, int _capacity, int _buyPrice, int _sellPrice, string _sprite,
+    public Consumable(int _id, string _name, ItemType _itemType, Quality _qualityType, string _desc, int _capacity, int _buyPrice, int _sellPrice, string _sprite, string _iconType,
         int _hp, int _mp)
-        : base(_id, _name, _itemType, _qualityType, _desc, _capacity, _buyPrice, _sellPrice, _sprite) {
+        : base(_id, _name, _itemType, _qualityType, _desc, _capacity, _buyPrice, _sellPrice, _sprite, _iconType) {
         HP = _hp;
         MP = _mp;
     }

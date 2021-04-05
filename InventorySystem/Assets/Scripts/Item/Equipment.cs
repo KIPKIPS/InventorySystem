@@ -10,9 +10,9 @@ public class Equipment : Item {
     public EquipType EquipmentType { get; set; } //装备类型
 
 
-    public Equipment(int _id, string _name, ItemType _itemType, Quality _qualityType, string _desc, int _capacity, int _buyPrice, int _sellPrice, string _sprite,
+    public Equipment(int _id, string _name, ItemType _itemType, Quality _qualityType, string _desc, int _capacity, int _buyPrice, int _sellPrice, string _sprite, string _iconType,
         int _strength, int _intellect, int _agility, int _stamina, EquipType _equipmentType)
-        : base(_id, _name, _itemType, _qualityType, _desc, _capacity, _buyPrice, _sellPrice, _sprite) {
+        : base(_id, _name, _itemType, _qualityType, _desc, _capacity, _buyPrice, _sellPrice, _sprite, _iconType) {
         Strength = _strength;
         Intellect = _intellect;
         Agility = _agility;

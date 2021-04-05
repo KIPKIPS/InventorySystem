@@ -10,8 +10,8 @@
         "sellPrice": "5",
         "hp": "20",
         "mp": "0",
-        "sprite": "ItemIcon/12"
-        
+        "sprite": "ItemIcon/12",
+        "iconType": "ItemIcon"
     },
     {
         "id": 2,
@@ -24,7 +24,8 @@
         "sellPrice": "10",
         "hp": "30",
         "mp": "0",
-        "sprite": "ItemIcon/14"
+        "sprite": "ItemIcon/14",
+        "iconType": "ItemIcon"
     },
     {
         "id": 3,
@@ -37,6 +38,7 @@
         "sellPrice": "50",
         "sprite": "ItemIcon/134",
         "damage" : 30,
-        "weaponType" : "MainHand"
+        "weaponType" : "MainHand",
+        "iconType": "ItemIcon"
     }
 ]
