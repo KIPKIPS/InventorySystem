@@ -53,4 +53,13 @@ public class InventoryManager : BaseSingleton<InventoryManager> {
             Debug.Log(item.IconType);
         }
     }
+
+    public Item GetItemById(int id) {
+        foreach (Item item in itemList) {
+            if (item.ID == id) {
+                return item;
+            }
+        }
+        return null;
+    }
 }
