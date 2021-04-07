@@ -5,16 +5,22 @@ using UnityEngine;
 public class Inventory : MonoBehaviour {
     private ItemSlot[] itemSlotList;
     public virtual void Start() {
-        itemSlotList = GetComponentsInChildren<ItemSlot>();
+
+    }
+
+    public ItemSlot[] CreateItemSlotList() {
+        ItemSlot[] list = GameObject.Find("Container").GetComponentsInChildren<ItemSlot>();
+        return list;
     }
 
     //存储item,返回一个bool值
     public bool StoreItem(int id) {
         Item item = InventoryManager.Instance.GetItemById(id);
+        //print(item == null);
         return StoreItem(item);
     }
     public bool StoreItem(Item item) {
-        if (item != null) {
+        if (item == null) {
             Debug.LogWarning("存储物品的id不存在");
             return false;
         }
@@ -29,7 +35,7 @@ public class Inventory : MonoBehaviour {
             }
         } else {
             ItemSlot slot = FindSameTypeItemSlot(item);
-            if (slot == null) {
+            if (slot != null) {
                 slot.StoreItem(item);
             } else {
                 ItemSlot emptySlot = FindEmptySlot();
@@ -48,6 +54,7 @@ public class Inventory : MonoBehaviour {
     public ItemSlot FindEmptySlot() {
         foreach (ItemSlot slot in itemSlotList) {
             if (slot.transform.childCount == 0) { //子节点为空(没有挂载任何物体),认为是空格子
+                //print("get empty");
                 return slot;
             }
         }
@@ -56,6 +63,9 @@ public class Inventory : MonoBehaviour {
 
     //查找id相同的物品
     public ItemSlot FindSameTypeItemSlot(Item item) {
+        if (itemSlotList == null) {
+            itemSlotList = CreateItemSlotList();
+        }
         foreach (ItemSlot slot in itemSlotList) {
             if (slot.transform.childCount >= 1 && slot.GetItemType() == item.Type && !slot.IsFilled()) {
                 return slot;

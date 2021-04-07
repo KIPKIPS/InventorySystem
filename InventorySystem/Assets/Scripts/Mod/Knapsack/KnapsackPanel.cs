@@ -2,6 +2,5 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnapsackPanel : Inventory {
-
+public class KnapsackPanel : BaseSingleton<Inventory> {
 }

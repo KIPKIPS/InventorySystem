@@ -9,6 +9,9 @@ public class InventoryManager : BaseSingleton<InventoryManager> {
 
     void Start() {
         AnalysisItemJsonData();
+        // foreach (Item item in itemList) {
+        //     print(item.ID);
+        // }
     }
 
     private List<Item> itemList;
@@ -50,13 +53,14 @@ public class InventoryManager : BaseSingleton<InventoryManager> {
                     break;
             }
             itemList.Add(item);
-            Debug.Log(item.IconType);
+            //Debug.Log(item.IconType);
         }
     }
 
     public Item GetItemById(int id) {
         foreach (Item item in itemList) {
             if (item.ID == id) {
+                //print("find it");
                 return item;
             }
         }

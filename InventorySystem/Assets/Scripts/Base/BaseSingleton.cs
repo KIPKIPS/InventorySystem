@@ -35,11 +35,11 @@ public class BaseSingleton<T> : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    void Start() {
+    public virtual void Start() {
 
     }
 
     // Update is called once per frame
-    void Update() {
+    public virtual void Update() {
     }
 }

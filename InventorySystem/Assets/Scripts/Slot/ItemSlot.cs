@@ -3,9 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemSlot : MonoBehaviour {
+    public GameObject itemPrefab;
+    private ItemUI itemUI;
     //将item放在itemSlot下,若存在slot,则物品数量增加1
     public void StoreItem(Item item) {
-
+        if (transform.childCount == 0) {
+            GameObject itemGameObject = Instantiate(itemPrefab);
+            itemGameObject.transform.SetParent(transform);
+            itemGameObject.transform.localPosition = Vector3.zero;
+            itemGameObject.transform.localRotation = Quaternion.identity;
+            if (itemUI == null) {
+                itemUI = itemGameObject.GetComponent<ItemUI>();
+            }
+            itemUI.SetItem(item);
+        } else {
+            transform.GetChild(0).GetComponent<ItemUI>().AddAmount();
+        }
     }
 
     //得到物品槽存储的物品类型
