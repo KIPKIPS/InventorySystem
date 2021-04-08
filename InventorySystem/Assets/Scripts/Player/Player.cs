@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (Input.GetKeyDown(KeyCode.G)) {
-            int id = Random.Range(1, 2);
+            int id = Random.Range(1, 4);
             KnapsackPanel.Instance.StoreItem(id);
         }
     }
