@@ -56,6 +56,12 @@ public class InventoryManager : BaseSingleton<InventoryManager> {
                     item = new Consumable(id, name, type, qualityType, description, capacity, buyPrice, sellPrice, sprite, iconType, hp, mp);
                     break;
                 case Item.ItemType.Equipment:
+                    int strength = int.Parse(jObj.GetValue("strength").ToString());
+                    int intellect = int.Parse(jObj.GetValue("intellect").ToString());
+                    int agility = int.Parse(jObj.GetValue("strength").ToString());
+                    int stamina = int.Parse(jObj.GetValue("intellect").ToString());
+                    Equipment.EquipType equipType = (Equipment.EquipType)System.Enum.Parse(typeof(Equipment.EquipType), jObj.GetValue("equipType").ToString());
+                    item = new Equipment(id, name, type, qualityType, description, capacity, buyPrice, sellPrice, sprite, iconType, strength, intellect, agility, stamina, equipType);
                     break;
                 case Item.ItemType.Weapon:
                     int damage = int.Parse(jObj.GetValue("damage").ToString());
@@ -63,6 +69,7 @@ public class InventoryManager : BaseSingleton<InventoryManager> {
                     item = new Weapon(id, name, type, qualityType, description, capacity, buyPrice, sellPrice, sprite, iconType, damage, wType);
                     break;
                 case Item.ItemType.Material:
+                    item = new Material(id, name, type, qualityType, description, capacity, buyPrice, sellPrice, sprite, iconType);
                     break;
             }
             itemList.Add(item);

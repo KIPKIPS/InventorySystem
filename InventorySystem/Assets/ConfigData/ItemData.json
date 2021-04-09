@@ -8,10 +8,10 @@
         "capacity": "10",
         "buyPrice": "10",
         "sellPrice": "5",
-        "hp": "20",
-        "mp": "0",
         "sprite": "ItemIcon/12",
-        "iconType": "ItemIcon"
+        "iconType": "ItemIcon",
+        "hp": "20",
+        "mp": "0"
     },
     {
         "id": 2,
@@ -22,10 +22,10 @@
         "capacity": "20",
         "buyPrice": "20",
         "sellPrice": "10",
-        "hp": "30",
-        "mp": "0",
         "sprite": "ItemIcon/14",
-        "iconType": "ItemIcon"
+        "iconType": "ItemIcon",
+        "hp": "30",
+        "mp": "0"
     },
     {
         "id": 3,
@@ -37,8 +37,37 @@
         "buyPrice": "100",
         "sellPrice": "50",
         "sprite": "ItemIcon/134",
+        "iconType": "ItemIcon",
         "damage" : 30,
-        "weaponType" : "MainHand",
+        "weaponType" : "MainHand"
+    },
+    {
+        "id": 4,
+        "name": "狗牙项链",
+        "type": "Equipment",
+        "quality": "Common",
+        "description": "由野狗嘴里拔下的牙制成",
+        "capacity": "1",
+        "buyPrice": "100",
+        "sellPrice": "50",
+        "sprite": "ItemIcon/34",
+        "iconType": "ItemIcon",
+        "strength" : 30,
+        "intellect" : 40,
+        "agility" : 10,
+        "stamina" : 60,
+        "equipType" : "Neck"
+    },
+    {
+        "id": 5,
+        "name": "符石碎片",
+        "type": "Material",
+        "quality": "Rare",
+        "description": "可以合成高级符石",
+        "capacity": "100",
+        "buyPrice": "5",
+        "sellPrice": "2",
+        "sprite": "ItemIcon/30",
         "iconType": "ItemIcon"
     }
 ]
