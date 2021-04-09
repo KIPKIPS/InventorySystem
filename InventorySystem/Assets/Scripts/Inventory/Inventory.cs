@@ -34,7 +34,7 @@ public class Inventory : MonoBehaviour {
                 slot.StoreItem(item);//存起来
             }
         } else {
-            ItemSlot slot = FindSameTypeItemSlot(item);
+            ItemSlot slot = FindSameIdItemSlot(item);
             if (slot != null) {
                 slot.StoreItem(item);
             } else {
@@ -62,12 +62,12 @@ public class Inventory : MonoBehaviour {
     }
 
     //查找id相同的物品
-    public ItemSlot FindSameTypeItemSlot(Item item) {
+    public ItemSlot FindSameIdItemSlot(Item item) {
         if (itemSlotList == null) {
             itemSlotList = CreateItemSlotList();
         }
         foreach (ItemSlot slot in itemSlotList) {
-            if (slot.transform.childCount >= 1 && slot.GetItemType() == item.Type && !slot.IsFilled()) {
+            if (slot.transform.childCount >= 1 && slot.GetItemID() == item.ID && !slot.IsFilled()) {
                 return slot;
             }
         }

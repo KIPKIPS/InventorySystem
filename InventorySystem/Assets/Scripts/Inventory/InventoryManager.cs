@@ -6,12 +6,25 @@ using UnityEngine;
 
 public class InventoryManager : BaseSingleton<InventoryManager> {
 
+    private ItemTips itemTips;
+    private bool isTipsShow = false;
+    private Canvas canvas;
 
+    private Canvas MainCanvas {
+        get {
+            if (canvas == null) {
+                canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+            }
+            return canvas;
+        }
+    }
     void Start() {
         AnalysisItemJsonData();
-        // foreach (Item item in itemList) {
-        //     print(item.ID);
-        // }
+        itemTips = GameObject.FindObjectOfType<ItemTips>();
+    }
+
+    void Update() {
+
     }
 
     private List<Item> itemList;
@@ -65,5 +78,22 @@ public class InventoryManager : BaseSingleton<InventoryManager> {
             }
         }
         return null;
+    }
+
+    public void ShowItemTips(string content) {
+        itemTips.Show(content);
+        isTipsShow = true;
+        // if (isTipsShow) { //tips跟随鼠标
+        //
+        // }
+        //把屏幕坐标转化成Canvas画布上的坐标
+        Vector2 position;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(MainCanvas.transform as RectTransform, Input.mousePosition, null, out position);
+        itemTips.SetLocalPosition(position);
+    }
+
+    public void HideItemTips() {
+        itemTips.Hide();
+        isTipsShow = false;
     }
 }

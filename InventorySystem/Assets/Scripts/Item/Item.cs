@@ -47,4 +47,8 @@ public class Item {
         Legendary,//传说的
         Artifact,//神话的
     }
+
+    public virtual string GetItemDesc() {
+        return Name;
+    }
 }

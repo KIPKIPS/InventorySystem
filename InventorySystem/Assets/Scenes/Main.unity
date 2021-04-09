@@ -759,6 +759,8 @@ GameObject:
   - component: {fileID: 192810307}
   - component: {fileID: 192810306}
   - component: {fileID: 192810305}
+  - component: {fileID: 192810308}
+  - component: {fileID: 192810309}
   m_Layer: 5
   m_Name: ItemTips
   m_TagString: Untagged
@@ -847,6 +849,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 192810303}
   m_CullTransparentMesh: 0
+--- !u!225 &192810308
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192810303}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &192810309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192810303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07c5a79cb63fb7242b4c0078fe326bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothTime: 10
 --- !u!1001 &226437060
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1631,7 +1658,7 @@ GameObject:
   - component: {fileID: 578160798}
   - component: {fileID: 578160797}
   m_Layer: 5
-  m_Name: Text
+  m_Name: ContentText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

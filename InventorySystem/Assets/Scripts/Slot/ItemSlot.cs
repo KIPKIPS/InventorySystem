@@ -1,10 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class ItemSlot : MonoBehaviour {
+public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
     public GameObject itemPrefab;
     private ItemUI itemUI;
+
+    public ItemUI ItemUI {
+        get {
+            if (itemUI == null) {
+                itemUI = transform.GetChild(0).GetComponent<ItemUI>();
+            }
+            return itemUI;
+        }
+    }
     //将item放在itemSlot下,若存在slot,则物品数量增加1
     public void StoreItem(Item item) {
         if (transform.childCount == 0) {
@@ -17,7 +27,7 @@ public class ItemSlot : MonoBehaviour {
             }
             itemUI.SetItem(item);
         } else {
-            transform.GetChild(0).GetComponent<ItemUI>().AddAmount();
+            ItemUI.AddAmount();
         }
     }
 
@@ -26,8 +36,23 @@ public class ItemSlot : MonoBehaviour {
         return transform.GetChild(0).GetComponent<ItemUI>().Item.Type;
     }
 
+    public int GetItemID() {
+        return itemUI.Item.ID;
+    }
+
     public bool IsFilled() {
-        ItemUI itemUI = transform.GetChild(0).GetComponent<ItemUI>();
         return itemUI.Amount >= itemUI.Item.Capacity;
+    }
+
+    public void OnPointerExit(PointerEventData eventData) {
+        if (transform.childCount > 0) {
+            InventoryManager.Instance.HideItemTips();
+        }
+    }
+    public void OnPointerEnter(PointerEventData eventData) {
+        if (transform.childCount > 0) {
+            string text = ItemUI.Item.GetItemDesc();
+            InventoryManager.Instance.ShowItemTips(text);
+        }
     }
 }
