@@ -49,6 +49,32 @@ public class Item {
     }
 
     public virtual string GetItemDesc() {
-        return Name;
+        string color = "";
+        switch (QualityType) {
+            case Quality.Common:
+                color = "black";
+                break;
+            case Quality.Uncommon:
+                color = "lime";
+                break;
+            case Quality.Rare:
+                color = "navy";
+                break;
+            case Quality.Epic:
+                color = "magenta";
+                break;
+            case Quality.Legendary:
+                color = "orange";
+                break;
+            case Quality.Artifact:
+                color = "red";
+                break;
+        }
+        string text = "";
+        text += "<color=" + color + ">" + Name + "</color>" + "\n";
+        text += Description + "\n";
+        text += "Price : " + BuyPrice + "\n";
+        text += "Sell : " + SellPrice;
+        return text;
     }
 }

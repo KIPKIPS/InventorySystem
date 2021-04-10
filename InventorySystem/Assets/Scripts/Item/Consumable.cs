@@ -14,4 +14,11 @@ public class Consumable : Item {
         HP = _hp;
         MP = _mp;
     }
+
+    public override string GetItemDesc() {
+        string text = base.GetItemDesc();
+        text += "\n" + "回复生命值" + HP;
+        text += "\n" + "回复法力值" + MP;
+        return text;
+    }
 }
