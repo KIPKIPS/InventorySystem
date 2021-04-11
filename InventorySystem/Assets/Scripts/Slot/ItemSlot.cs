@@ -52,7 +52,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerEnter(PointerEventData eventData) {
         if (transform.childCount > 0) {
             string text = ItemUI.Item.GetItemDesc();
-            InventoryManager.Instance.ShowItemTips(text);
+            InventoryManager.Instance.ShowItemTips(text, new Vector2(transform.position.x, transform.position.y));
         }
     }
 
@@ -79,13 +79,16 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         // ctrl 拾起一半
         // not ctrl 全部拾起
         if (transform.childCount > 0) { //非空格子
-            ItemUI itmeUI = transform.GetChild(0).GetComponent<ItemUI>();
+            ItemUI curItmeUI = transform.GetChild(0).GetComponent<ItemUI>();
             if (InventoryManager.Instance.IsPickItem == false) { //没拾起的物品,处理拾取物品
                 if (Input.GetKey(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)) { //ctrl
 
                 } else { //not ctrl
-                    InventoryManager.Instance.PickedItem.SetItemUI(itmeUI);
+
+                    InventoryManager.Instance.PickedItem.SetItemUI(curItmeUI);
+                    InventoryManager.Instance.PickedItem.Show();
                     InventoryManager.Instance.IsPickItem = true;
+                    Destroy(curItmeUI.gameObject);
                 }
             }
         } else {

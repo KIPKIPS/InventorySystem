@@ -58,6 +58,6 @@ public class ItemTips : MonoBehaviour {
     }
 
     public void SetLocalPosition(Vector2 pos) {
-        transform.localPosition = pos;
+        transform.localPosition = new Vector3(pos.x + 32, pos.y - 32, 0);
     }
 }

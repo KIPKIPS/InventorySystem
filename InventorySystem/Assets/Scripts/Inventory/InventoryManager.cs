@@ -46,7 +46,12 @@ public class InventoryManager : BaseSingleton<InventoryManager> {
     }
 
     public override void Update() {
+        if (isPickItem) {
+            Vector2 position;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(MainCanvas.transform as RectTransform, Input.mousePosition, null, out position);
 
+            PickedItem.SetLocalPosition(new Vector3(position.x, position.y, 0));
+        }
     }
 
     private List<Item> itemList;
@@ -109,7 +114,7 @@ public class InventoryManager : BaseSingleton<InventoryManager> {
         return null;
     }
 
-    public void ShowItemTips(string content) {
+    public void ShowItemTips(string content, Vector2 pos) {
         itemTips.Show(content);
         isTipsShow = true;
         // if (isTipsShow) { //tips跟随鼠标
@@ -117,7 +122,7 @@ public class InventoryManager : BaseSingleton<InventoryManager> {
         // }
         //把屏幕坐标转化成Canvas画布上的坐标
         Vector2 position;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(MainCanvas.transform as RectTransform, Input.mousePosition, null, out position);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(MainCanvas.transform as RectTransform, pos, null, out position);
         itemTips.SetLocalPosition(position);
     }
 
