@@ -41,4 +41,20 @@ public class ItemUI : MonoBehaviour {
         Amount += amount;
         AmountText.text = Amount.ToString();
     }
+
+    public void Show() {
+        gameObject.SetActive(true);
+    }
+
+    public void Hide() {
+        gameObject.SetActive(false);
+    }
+
+    public void SetLocalPosition(Vector3 pos) {
+        transform.localPosition = pos;
+    }
+
+    public void SetItemUI(ItemUI itemUI) {
+        SetItem(itemUI.Item, itemUI.Amount);
+    }
 }

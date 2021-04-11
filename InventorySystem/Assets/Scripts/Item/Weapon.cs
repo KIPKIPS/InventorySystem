@@ -16,4 +16,11 @@ public class Weapon : Item {
         MainHand,
         OffHand,
     }
+
+    public override string GetItemDesc() {
+        string text = base.GetItemDesc();
+        text += "\n" + "伤害值: " + Damage;
+        text += "\n" + "武器类型" + Type.ToString();
+        return text;
+    }
 }

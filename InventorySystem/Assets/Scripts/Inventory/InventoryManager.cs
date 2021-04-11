@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class InventoryManager : BaseSingleton<InventoryManager> {
@@ -10,6 +11,24 @@ public class InventoryManager : BaseSingleton<InventoryManager> {
     private bool isTipsShow = false;
     private Canvas canvas;
 
+    private ItemUI pickedItem;
+    private bool isPickItem = false;
+    public bool IsPickItem {
+        get {
+            return isPickItem;
+        }
+        set {
+            isPickItem = value;
+        }
+    }
+    public ItemUI PickedItem {
+        get {
+            if (pickedItem == null) {
+                pickedItem = GameObject.Find("PickedItem").GetComponent<ItemUI>();
+            }
+            return pickedItem;
+        }
+    }
     private Canvas MainCanvas {
         get {
             if (canvas == null) {
@@ -17,13 +36,16 @@ public class InventoryManager : BaseSingleton<InventoryManager> {
             }
             return canvas;
         }
+
     }
-    void Start() {
+    public override void Start() {
         AnalysisItemJsonData();
         itemTips = GameObject.FindObjectOfType<ItemTips>();
+        pickedItem = GameObject.Find("PickedItem").GetComponent<ItemUI>();
+        pickedItem.Hide();
     }
 
-    void Update() {
+    public override void Update() {
 
     }
 
@@ -103,4 +125,5 @@ public class InventoryManager : BaseSingleton<InventoryManager> {
         itemTips.Hide();
         isTipsShow = false;
     }
+
 }

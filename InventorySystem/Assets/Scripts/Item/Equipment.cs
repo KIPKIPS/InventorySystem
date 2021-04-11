@@ -33,4 +33,11 @@ public class Equipment : Item {
         Belt, // 腰带
         OffHand, // 副手武器
     }
+
+    public override string GetItemDesc() {
+        string text = base.GetItemDesc();
+        text += "\n" + "力量:" + Strength + " 智力" + Intellect + " 敏捷" + Agility + " 体力" + Stamina;
+        text += "\n" + "装备类型" + EquipmentType.ToString();
+        return text;
+    }
 }

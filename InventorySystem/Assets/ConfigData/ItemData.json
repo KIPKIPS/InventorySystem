@@ -17,7 +17,7 @@
         "id": 2,
         "name": "中号血瓶",
         "type": "Consumable",
-        "quality": "Uncommon",
+        "quality": "Legendary",
         "description": "这个是用来加血的",
         "capacity": "20",
         "buyPrice": "20",
@@ -31,7 +31,7 @@
         "id": 3,
         "name": "风火轮",
         "type": "Weapon",
-        "quality": "Common",
+        "quality": "Epic",
         "description": "哪吒的风火轮",
         "capacity": "10",
         "buyPrice": "100",
@@ -68,6 +68,18 @@
         "buyPrice": "5",
         "sellPrice": "2",
         "sprite": "ItemIcon/30",
+        "iconType": "ItemIcon"
+    },
+    {
+        "id": 6,
+        "name": "爆炸糖",
+        "type": "Material",
+        "quality": "Artifact",
+        "description": "吃了直接爆炸",
+        "capacity": "15",
+        "buyPrice": "500",
+        "sellPrice": "1",
+        "sprite": "ItemIcon/1",
         "iconType": "ItemIcon"
     }
 ]

@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour {
     private ItemSlot[] itemSlotList;
+
+    private ItemSlot[] ItemSlotList {
+        get {
+            if (itemSlotList == null) {
+                itemSlotList = CreateItemSlotList();
+            }
+            return itemSlotList;
+        }
+    }
     public virtual void Start() {
 
     }
@@ -52,7 +61,7 @@ public class Inventory : MonoBehaviour {
 
     //查找空格子
     public ItemSlot FindEmptySlot() {
-        foreach (ItemSlot slot in itemSlotList) {
+        foreach (ItemSlot slot in ItemSlotList) {
             if (slot.transform.childCount == 0) { //子节点为空(没有挂载任何物体),认为是空格子
                 //print("get empty");
                 return slot;
@@ -63,10 +72,7 @@ public class Inventory : MonoBehaviour {
 
     //查找id相同的物品
     public ItemSlot FindSameIdItemSlot(Item item) {
-        if (itemSlotList == null) {
-            itemSlotList = CreateItemSlotList();
-        }
-        foreach (ItemSlot slot in itemSlotList) {
+        foreach (ItemSlot slot in ItemSlotList) {
             if (slot.transform.childCount >= 1 && slot.GetItemID() == item.ID && !slot.IsFilled()) {
                 return slot;
             }
