@@ -41,6 +41,10 @@ public class ItemUI : MonoBehaviour {
         Amount += amount;
         AmountText.text = Amount.ToString();
     }
+    public void SetAmount(int amount) {
+        Amount = amount;
+        AmountText.text = Amount.ToString();
+    }
 
     public void Show() {
         gameObject.SetActive(true);

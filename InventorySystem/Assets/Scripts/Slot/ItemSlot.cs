@@ -82,12 +82,18 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             ItemUI curItmeUI = transform.GetChild(0).GetComponent<ItemUI>();
             if (InventoryManager.Instance.IsPickItem == false) { //没拾起的物品,处理拾取物品
                 if (Input.GetKey(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)) { //ctrl
+                    int amountPicked = Mathf.CeilToInt(curItmeUI.Amount / 2f);
+                    Debug.Log(amountPicked);
+                    InventoryManager.Instance.PickUpItem(curItmeUI.Item, amountPicked);
+                    if (curItmeUI.Amount - amountPicked <= 0) { //剩余物品数量小于0,销毁格子物品
+                        Debug.Log(curItmeUI.Amount);
+                        Destroy(curItmeUI.gameObject);
+                    } else { //剩余物品数量大于0,更新数量
+                        curItmeUI.SetAmount(curItmeUI.Amount - amountPicked);
+                    }
 
                 } else { //not ctrl
-
-                    InventoryManager.Instance.PickedItem.SetItemUI(curItmeUI);
-                    InventoryManager.Instance.PickedItem.Show();
-                    InventoryManager.Instance.IsPickItem = true;
+                    InventoryManager.Instance.PickUpItem(curItmeUI.Item, curItmeUI.Amount);
                     Destroy(curItmeUI.gameObject);
                 }
             }

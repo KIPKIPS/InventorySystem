@@ -115,15 +115,17 @@ public class InventoryManager : BaseSingleton<InventoryManager> {
     }
 
     public void ShowItemTips(string content, Vector2 pos) {
-        itemTips.Show(content);
-        isTipsShow = true;
-        // if (isTipsShow) { //tips跟随鼠标
-        //
-        // }
-        //把屏幕坐标转化成Canvas画布上的坐标
-        Vector2 position;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(MainCanvas.transform as RectTransform, pos, null, out position);
-        itemTips.SetLocalPosition(position);
+        if (!IsPickItem) {
+            itemTips.Show(content);
+            isTipsShow = true;
+            // if (isTipsShow) { //tips跟随鼠标
+            //
+            // }
+            //把屏幕坐标转化成Canvas画布上的坐标
+            Vector2 position;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(MainCanvas.transform as RectTransform, pos, null, out position);
+            itemTips.SetLocalPosition(position);
+        }
     }
 
     public void HideItemTips() {
@@ -131,4 +133,11 @@ public class InventoryManager : BaseSingleton<InventoryManager> {
         isTipsShow = false;
     }
 
+    public void PickUpItem(Item item, int amount) {
+        PickedItem.SetItem(item, amount);
+        PickedItem.Show();
+        IsPickItem = true;
+
+        itemTips.Hide();
+    }
 }
