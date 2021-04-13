@@ -137,7 +137,16 @@ public class InventoryManager : BaseSingleton<InventoryManager> {
         PickedItem.SetItem(item, amount);
         PickedItem.Show();
         IsPickItem = true;
-
         itemTips.Hide();
+    }
+
+    public void PickUpItemAmountMinus(int amount = 1) {
+        if (PickedItem.Amount - amount <= 0) {
+            pickedItem.Hide();
+            isPickItem = false;
+        } else {
+            PickedItem.SetItem(PickedItem.Item, PickedItem.Amount - amount);
+        }
+
     }
 }

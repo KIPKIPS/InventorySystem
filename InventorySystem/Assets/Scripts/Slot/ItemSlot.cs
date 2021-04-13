@@ -66,7 +66,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         // 非空格子
         // pickItem不为空
-        // 同id的物品,直接放下
+        // 同id的物品,放下
         // 全部放得下
         // ctrl 每次放一个
         // not ctrl 全部放置
@@ -95,6 +95,20 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 } else { //not ctrl
                     InventoryManager.Instance.PickUpItem(curItmeUI.Item, curItmeUI.Amount);
                     Destroy(curItmeUI.gameObject);
+                }
+            } else { //有拾起的物品,处理放下
+                if (curItmeUI.Item.ID == InventoryManager.Instance.PickedItem.Item.ID) { //id一致
+                    if (Input.GetKey(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)) {
+                        if (curItmeUI.Item.Capacity > curItmeUI.Amount) { //有容量
+                            curItmeUI.AddAmount();//格子加一个
+                            InventoryManager.Instance.PickUpItemAmountMinus();//手上减一
+                        } else {
+                            Debug.LogWarning("当前格子容量不足,放不下了");
+                            return;//没容量,放不下
+                        }
+                    } else {
+
+                    }
                 }
             }
         } else {
