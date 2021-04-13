@@ -107,8 +107,20 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                             return;//没容量,放不下
                         }
                     } else {
-
+                        int pickAmount = InventoryManager.Instance.PickedItem.Amount;
+                        if (curItmeUI.Item.Capacity > curItmeUI.Amount) { //有容量,可以放下
+                            int remainCapacity = curItmeUI.Item.Capacity - curItmeUI.Amount;
+                            int dropAmount = remainCapacity >= pickAmount ? pickAmount : remainCapacity;
+                            curItmeUI.AddAmount(dropAmount);//格子加上可放置的
+                            InventoryManager.Instance.PickUpItemAmountMinus(dropAmount);//手上减去可放置的
+                        } else {
+                            Debug.LogWarning("当前格子容量不足,放不下了");
+                            return;//没容量,放不下
+                        }
                     }
+                } else {
+                    Debug.LogWarning("物品不是同一种类");
+                    return;
                 }
             }
         } else {
