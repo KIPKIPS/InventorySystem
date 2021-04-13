@@ -90,11 +90,11 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         // pickItem为空,拾起物品,放到pickItem上
         // ctrl 拾起一半
         // not ctrl 全部拾起
-        bool leftOrRightCtrlKeyDown = Input.GetKey(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl);
+        bool keepLeftOrRightCtrlKey = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
         if (transform.childCount > 0) { //非空格子
             ItemUI curItem = transform.GetChild(0).GetComponent<ItemUI>();
             if (InventoryManager.Instance.IsPickItem == false) { //没拾起的物品,处理拾取物品
-                if (leftOrRightCtrlKeyDown) { //ctrl
+                if (keepLeftOrRightCtrlKey) { //ctrl
                     int amountPicked = Mathf.CeilToInt(curItem.Amount / 2f);
                     Debug.Log(amountPicked);
                     InventoryManager.Instance.PickUpItem(curItem.Item, amountPicked);
@@ -111,7 +111,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 }
             } else { //有拾起的物品,处理放下
                 if (curItem.Item.ID == InventoryManager.Instance.PickedItem.Item.ID) { //id一致
-                    if (leftOrRightCtrlKeyDown) {
+                    if (keepLeftOrRightCtrlKey) {
                         if (curItem.Item.Capacity > curItem.Amount) { //有容量
                             curItem.AddAmount();//格子加一个
                             InventoryManager.Instance.PickUpItemAmountMinus();//手上减一
@@ -143,7 +143,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }
         } else { //空格子
             if (InventoryManager.Instance.IsPickItem) { //手上有物品
-                if (leftOrRightCtrlKeyDown) {//ctrl 放一个
+                if (keepLeftOrRightCtrlKey) {//ctrl 放一个
                     StoreItem(InventoryManager.Instance.PickedItem.Item);
                     InventoryManager.Instance.PickUpItemAmountMinus();
                 } else { //全部放下
