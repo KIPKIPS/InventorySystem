@@ -64,6 +64,11 @@ public class ItemUI : MonoBehaviour {
         AmountText.text = Amount.ToString();
     }
 
+    public void ReduceAmount(int amount) {
+        Amount -= amount;
+        SetAmount(Amount);
+    }
+
     public void Show() {
         gameObject.SetActive(true);
     }
@@ -75,7 +80,6 @@ public class ItemUI : MonoBehaviour {
     public void SetLocalPosition(Vector3 pos) {
         transform.localPosition = pos;
     }
-
     public void SetItemUI(ItemUI itemUI) {
         SetItem(itemUI.Item, itemUI.Amount);
     }

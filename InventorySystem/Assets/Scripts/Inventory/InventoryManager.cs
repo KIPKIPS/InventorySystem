@@ -145,7 +145,7 @@ public class InventoryManager : BaseSingleton<InventoryManager> {
             pickedItem.Hide();
             isPickItem = false;
         } else {
-            PickedItem.SetItem(PickedItem.Item, PickedItem.Amount - amount);
+            PickedItem.ReduceAmount(amount);
         }
 
     }

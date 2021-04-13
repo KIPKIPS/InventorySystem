@@ -30,6 +30,18 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             ItemUI.AddAmount();
         }
     }
+    public void StoreItem(Item item, int amount) {
+        if (transform.childCount == 0) {
+            GameObject itemGameObject = Instantiate(itemPrefab);
+            itemGameObject.transform.SetParent(transform);
+            itemGameObject.transform.localPosition = Vector3.zero;
+            itemGameObject.transform.localRotation = Quaternion.identity;
+            if (itemUI == null) {
+                itemUI = itemGameObject.GetComponent<ItemUI>();
+            }
+            itemUI.SetItem(item, amount);
+        }
+    }
 
     //得到物品槽存储的物品类型
     public Item.ItemType GetItemType() {
@@ -78,29 +90,30 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         // pickItem为空,拾起物品,放到pickItem上
         // ctrl 拾起一半
         // not ctrl 全部拾起
+        bool leftOrRightCtrlKeyDown = Input.GetKey(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl);
         if (transform.childCount > 0) { //非空格子
-            ItemUI curItmeUI = transform.GetChild(0).GetComponent<ItemUI>();
+            ItemUI curItem = transform.GetChild(0).GetComponent<ItemUI>();
             if (InventoryManager.Instance.IsPickItem == false) { //没拾起的物品,处理拾取物品
-                if (Input.GetKey(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)) { //ctrl
-                    int amountPicked = Mathf.CeilToInt(curItmeUI.Amount / 2f);
+                if (leftOrRightCtrlKeyDown) { //ctrl
+                    int amountPicked = Mathf.CeilToInt(curItem.Amount / 2f);
                     Debug.Log(amountPicked);
-                    InventoryManager.Instance.PickUpItem(curItmeUI.Item, amountPicked);
-                    if (curItmeUI.Amount - amountPicked <= 0) { //剩余物品数量小于0,销毁格子物品
-                        Debug.Log(curItmeUI.Amount);
-                        Destroy(curItmeUI.gameObject);
+                    InventoryManager.Instance.PickUpItem(curItem.Item, amountPicked);
+                    if (curItem.Amount - amountPicked <= 0) { //剩余物品数量小于0,销毁格子物品
+                        Debug.Log(curItem.Amount);
+                        Destroy(curItem.gameObject);
                     } else { //剩余物品数量大于0,更新数量
-                        curItmeUI.SetAmount(curItmeUI.Amount - amountPicked);
+                        curItem.SetAmount(curItem.Amount - amountPicked);
                     }
 
                 } else { //not ctrl
-                    InventoryManager.Instance.PickUpItem(curItmeUI.Item, curItmeUI.Amount);
-                    Destroy(curItmeUI.gameObject);
+                    InventoryManager.Instance.PickUpItem(curItem.Item, curItem.Amount);
+                    Destroy(curItem.gameObject);
                 }
             } else { //有拾起的物品,处理放下
-                if (curItmeUI.Item.ID == InventoryManager.Instance.PickedItem.Item.ID) { //id一致
-                    if (Input.GetKey(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)) {
-                        if (curItmeUI.Item.Capacity > curItmeUI.Amount) { //有容量
-                            curItmeUI.AddAmount();//格子加一个
+                if (curItem.Item.ID == InventoryManager.Instance.PickedItem.Item.ID) { //id一致
+                    if (leftOrRightCtrlKeyDown) {
+                        if (curItem.Item.Capacity > curItem.Amount) { //有容量
+                            curItem.AddAmount();//格子加一个
                             InventoryManager.Instance.PickUpItemAmountMinus();//手上减一
                         } else {
                             Debug.LogWarning("当前格子容量不足,放不下了");
@@ -108,10 +121,10 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                         }
                     } else {
                         int pickAmount = InventoryManager.Instance.PickedItem.Amount;
-                        if (curItmeUI.Item.Capacity > curItmeUI.Amount) { //有容量,可以放下
-                            int remainCapacity = curItmeUI.Item.Capacity - curItmeUI.Amount;
+                        if (curItem.Item.Capacity > curItem.Amount) { //有容量,可以放下
+                            int remainCapacity = curItem.Item.Capacity - curItem.Amount;
                             int dropAmount = remainCapacity >= pickAmount ? pickAmount : remainCapacity;
-                            curItmeUI.AddAmount(dropAmount);//格子加上可放置的
+                            curItem.AddAmount(dropAmount);//格子加上可放置的
                             InventoryManager.Instance.PickUpItemAmountMinus(dropAmount);//手上减去可放置的
                         } else {
                             Debug.LogWarning("当前格子容量不足,放不下了");
@@ -119,12 +132,27 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                         }
                     }
                 } else {
-                    Debug.LogWarning("物品不是同一种类");
-                    return;
+                    // Debug.LogWarning("物品不是同一种类");
+                    // return;
+                    //处理交换,不分ctrl or not ctrl
+                    Item cacheCurItem = curItem.Item;
+                    int cacheAmount = curItem.Amount;
+                    curItem.SetItem(InventoryManager.Instance.PickedItem.Item, InventoryManager.Instance.PickedItem.Amount);
+                    InventoryManager.Instance.PickedItem.SetItem(cacheCurItem, cacheAmount);
                 }
             }
-        } else {
-
+        } else { //空格子
+            if (InventoryManager.Instance.IsPickItem) { //手上有物品
+                if (leftOrRightCtrlKeyDown) {//ctrl 放一个
+                    StoreItem(InventoryManager.Instance.PickedItem.Item);
+                    InventoryManager.Instance.PickUpItemAmountMinus();
+                } else { //全部放下
+                    StoreItem(InventoryManager.Instance.PickedItem.Item, InventoryManager.Instance.PickedItem.Amount);
+                    InventoryManager.Instance.PickUpItemAmountMinus(InventoryManager.Instance.PickedItem.Amount);
+                }
+            } else { //二者皆空,不处理
+                return;
+            }
         }
     }
 
