@@ -1544,8 +1544,8 @@ GameObject:
   m_Component:
   - component: {fileID: 526177370}
   - component: {fileID: 526177371}
-  - component: {fileID: 526177372}
   - component: {fileID: 526177373}
+  - component: {fileID: 526177372}
   m_Layer: 5
   m_Name: KnapsackPanel
   m_TagString: Untagged
