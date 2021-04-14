@@ -8,15 +8,6 @@ public class Inventory : MonoBehaviour {
     public float smoothSpeed = 5;
     private CanvasGroup canvasGroup;
 
-    private ItemSlot[] ItemSlotList {
-        get {
-            if (itemSlotList == null) {
-                itemSlotList = CreateItemSlotList();
-            }
-            return itemSlotList;
-        }
-    }
-
     public virtual void Update() {
         if (targetAlpha != canvasGroup.alpha) {
             canvasGroup.alpha = Mathf.Lerp(canvasGroup.alpha, targetAlpha, smoothSpeed * Time.deltaTime);
@@ -27,10 +18,11 @@ public class Inventory : MonoBehaviour {
     }
     public virtual void Start() {
         canvasGroup = GetComponent<CanvasGroup>();
+        itemSlotList = CreateItemSlotList();
     }
 
     public ItemSlot[] CreateItemSlotList() {
-        ItemSlot[] list = GameObject.Find("Container").GetComponentsInChildren<ItemSlot>();
+        ItemSlot[] list = transform.Find("ContentBg").Find("Container").GetComponentsInChildren<ItemSlot>();
         return list;
     }
 
@@ -73,7 +65,7 @@ public class Inventory : MonoBehaviour {
 
     //查找空格子
     public ItemSlot FindEmptySlot() {
-        foreach (ItemSlot slot in ItemSlotList) {
+        foreach (ItemSlot slot in itemSlotList) {
             if (slot.transform.childCount == 0) { //子节点为空(没有挂载任何物体),认为是空格子
                 //print("get empty");
                 return slot;
@@ -84,7 +76,7 @@ public class Inventory : MonoBehaviour {
 
     //查找id相同的物品
     public ItemSlot FindSameIdItemSlot(Item item) {
-        foreach (ItemSlot slot in ItemSlotList) {
+        foreach (ItemSlot slot in itemSlotList) {
             if (slot.transform.childCount >= 1 && slot.GetItemID() == item.ID && !slot.IsFilled()) {
                 return slot;
             }

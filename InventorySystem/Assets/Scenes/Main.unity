@@ -1567,7 +1567,7 @@ RectTransform:
   - {fileID: 372557533}
   - {fileID: 1910469910}
   m_Father: {fileID: 2030763867}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4260,8 +4260,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1805745644}
   - component: {fileID: 1805745645}
-  - component: {fileID: 1805745646}
   - component: {fileID: 1805745647}
+  - component: {fileID: 1805745646}
   m_Layer: 5
   m_Name: ChestPanel
   m_TagString: Untagged
@@ -4283,7 +4283,7 @@ RectTransform:
   - {fileID: 1076490381}
   - {fileID: 1436079983}
   m_Father: {fileID: 2030763867}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5173,8 +5173,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1805745644}
   - {fileID: 526177370}
+  - {fileID: 1805745644}
   - {fileID: 192810304}
   - {fileID: 1959843947}
   m_Father: {fileID: 0}
