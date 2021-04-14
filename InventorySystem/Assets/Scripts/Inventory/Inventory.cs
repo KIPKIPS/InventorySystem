@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour {
     private ItemSlot[] itemSlotList;
+    public float targetAlpha = 1;
+    public float smoothSpeed = 5;
+    private CanvasGroup canvasGroup;
 
     private ItemSlot[] ItemSlotList {
         get {
@@ -13,8 +16,17 @@ public class Inventory : MonoBehaviour {
             return itemSlotList;
         }
     }
-    public virtual void Start() {
 
+    public virtual void Update() {
+        if (targetAlpha != canvasGroup.alpha) {
+            canvasGroup.alpha = Mathf.Lerp(canvasGroup.alpha, targetAlpha, smoothSpeed * Time.deltaTime);
+            if (Mathf.Abs(canvasGroup.alpha - targetAlpha) <= 0.01f) {
+                canvasGroup.alpha = targetAlpha;
+            }
+        }
+    }
+    public virtual void Start() {
+        canvasGroup = GetComponent<CanvasGroup>();
     }
 
     public ItemSlot[] CreateItemSlotList() {
@@ -78,5 +90,23 @@ public class Inventory : MonoBehaviour {
             }
         }
         return null;
+    }
+
+    public void Show() {
+        targetAlpha = 1;
+        canvasGroup.blocksRaycasts = true;
+    }
+
+    public void Hide() {
+        targetAlpha = 0;
+        canvasGroup.blocksRaycasts = false;
+    }
+
+    public void SwitchPanelDisplayStatus() {
+        if (targetAlpha == 0) {
+            Show();
+        } else {
+            Hide();
+        }
     }
 }

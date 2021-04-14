@@ -1545,6 +1545,7 @@ GameObject:
   - component: {fileID: 526177370}
   - component: {fileID: 526177371}
   - component: {fileID: 526177372}
+  - component: {fileID: 526177373}
   m_Layer: 5
   m_Name: KnapsackPanel
   m_TagString: Untagged
@@ -1566,7 +1567,7 @@ RectTransform:
   - {fileID: 372557533}
   - {fileID: 1910469910}
   m_Father: {fileID: 2030763867}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1593,6 +1594,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c6933a9ba0f7c141a74259d0034985d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetAlpha: 1
+  smoothSpeed: 5
+--- !u!225 &526177373
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526177369}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!224 &529254986 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1297804171975259216, guid: bc24def238e235846a53bad7ffa90dcd, type: 3}
@@ -4246,6 +4261,7 @@ GameObject:
   - component: {fileID: 1805745644}
   - component: {fileID: 1805745645}
   - component: {fileID: 1805745646}
+  - component: {fileID: 1805745647}
   m_Layer: 5
   m_Name: ChestPanel
   m_TagString: Untagged
@@ -4267,7 +4283,7 @@ RectTransform:
   - {fileID: 1076490381}
   - {fileID: 1436079983}
   m_Father: {fileID: 2030763867}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4294,6 +4310,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a19445230e1fb964a8c3ad826dc10346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetAlpha: 1
+  smoothSpeed: 5
+--- !u!225 &1805745647
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805745643}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1813926571
 GameObject:
   m_ObjectHideFlags: 0
@@ -5143,8 +5173,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 526177370}
   - {fileID: 1805745644}
+  - {fileID: 526177370}
   - {fileID: 192810304}
   - {fileID: 1959843947}
   m_Father: {fileID: 0}

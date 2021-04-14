@@ -10,6 +10,12 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (Input.GetKeyDown(KeyCode.C)) {
+            ChestPanel.Instance.SwitchPanelDisplayStatus();
+        }
+        if (Input.GetKeyDown(KeyCode.K)) {
+            KnapsackPanel.Instance.SwitchPanelDisplayStatus();
+        }
         if (Input.GetKeyDown(KeyCode.G)) {
             int id = Random.Range(1, 7);
             KnapsackPanel.Instance.StoreItem(id);

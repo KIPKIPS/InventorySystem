@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChestPanel : BaseSingleton<Inventory> {
-    // Start is called before the first frame update
-    public override void Start() {
+public class ChestPanel : Inventory {
+    private static ChestPanel _instatce;
 
-    }
-
-    // Update is called once per frame
-    public override void Update() {
-
+    public static ChestPanel Instance {
+        get {
+            if (_instatce == null) {
+                _instatce = GameObject.Find("ChestPanel").GetComponent<ChestPanel>();
+            }
+            return _instatce;
+        }
     }
 }
