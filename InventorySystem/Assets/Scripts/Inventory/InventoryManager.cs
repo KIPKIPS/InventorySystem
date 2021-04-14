@@ -51,7 +51,14 @@ public class InventoryManager : BaseSingleton<InventoryManager> {
             RectTransformUtility.ScreenPointToLocalPointInRectangle(MainCanvas.transform as RectTransform, Input.mousePosition, null, out position);
 
             PickedItem.SetLocalPosition(new Vector3(position.x, position.y, 0));
+            //处理物品丢弃 //使用UI事件系统来判断鼠标是否在UI上Down下 false为没有UI,即点击到了空白区域,丢弃
+            if (Input.GetMouseButtonDown(0) && UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(-1) == false) {
+                isPickItem = false;
+                PickedItem.Hide();
+            }
         }
+
+
     }
 
     private List<Item> itemList;
