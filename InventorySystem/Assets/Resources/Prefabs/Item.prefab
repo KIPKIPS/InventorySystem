@@ -168,3 +168,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e643d3ba286adbc46a49f70ec125fd2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animateScale: 1.4
+  smoothSpeed: 10

@@ -45,7 +45,8 @@ public class ItemUI : MonoBehaviour {
     }
 
     public void SetItem(Item item, int amount = 1) {
-        transform.localScale = Vector3.one * animateScale;
+        //print(2);
+        //transform.localScale = Vector3.one * animateScale;
         Item = item;
         Amount = amount;
         //更新UI
@@ -54,11 +55,13 @@ public class ItemUI : MonoBehaviour {
     }
 
     public void AddAmount(int amount = 1) {
+        //print(3);
         transform.localScale = Vector3.one * animateScale;
         Amount += amount;
         AmountText.text = Amount.ToString();
     }
     public void SetAmount(int amount) {
+        //print(1);
         transform.localScale = Vector3.one * animateScale;
         Amount = amount;
         AmountText.text = Amount.ToString();
@@ -66,7 +69,8 @@ public class ItemUI : MonoBehaviour {
 
     public void ReduceAmount(int amount) {
         Amount -= amount;
-        SetAmount(Amount);
+        Amount = amount;
+        AmountText.text = Amount.ToString();
     }
 
     public void Show() {
