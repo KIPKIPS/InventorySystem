@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour {
-    private ItemSlot[] itemSlotList;
+    protected ItemSlot[] itemSlotList;
     public float targetAlpha = 1;
     public float smoothSpeed = 5;
     private CanvasGroup canvasGroup;

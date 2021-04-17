@@ -69,7 +69,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
 
     //鼠标Down下,拾起物品
-    public void OnPointerDown(PointerEventData eventData) {
+    public virtual void OnPointerDown(PointerEventData eventData) {
 
         // 空格子
         // pickItem非空,把pickItem放置到格子上

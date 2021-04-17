@@ -22,6 +22,7 @@ public class Equipment : Item {
 
     //装备类型
     public enum EquipType {
+        None,
         Head, // 头部
         Neck, // 脖子
         Ring, // 戒指

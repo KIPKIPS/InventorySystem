@@ -13,6 +13,7 @@ public class Weapon : Item {
         Damage = _damage;
     }
     public enum WeaponType {
+        None,
         MainHand,
         OffHand,
     }
