@@ -96,7 +96,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             if (InventoryManager.Instance.IsPickItem == false) { //没拾起的物品,处理拾取物品
                 if (keepLeftOrRightCtrlKey) { //ctrl
                     int amountPicked = Mathf.CeilToInt(curItem.Amount / 2f);
-                    Debug.Log(amountPicked);
+                    //Debug.Log(amountPicked);
                     InventoryManager.Instance.PickUpItem(curItem.Item, amountPicked);
                     if (curItem.Amount - amountPicked <= 0) { //剩余物品数量小于0,销毁格子物品
                         Debug.Log(curItem.Amount);

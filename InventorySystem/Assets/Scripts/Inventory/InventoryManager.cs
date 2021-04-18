@@ -140,7 +140,7 @@ public class InventoryManager : BaseSingleton<InventoryManager> {
         isTipsShow = false;
     }
 
-    public void PickUpItem(Item item, int amount) {
+    public void PickUpItem(Item item, int amount = 1) {
         PickedItem.SetItem(item, amount);
         PickedItem.Show();
         IsPickItem = true;

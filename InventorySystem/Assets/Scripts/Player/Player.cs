@@ -17,7 +17,7 @@ public class Player : MonoBehaviour {
             KnapsackPanel.Instance.SwitchPanelDisplayStatus();
         }
         if (Input.GetKeyDown(KeyCode.G)) {
-            int id = Random.Range(1, 11);
+            int id = Random.Range(1, 15);
             KnapsackPanel.Instance.StoreItem(id);
         }
     }
