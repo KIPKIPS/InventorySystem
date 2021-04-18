@@ -87,4 +87,13 @@ public class ItemUI : MonoBehaviour {
     public void SetItemUI(ItemUI itemUI) {
         SetItem(itemUI.Item, itemUI.Amount);
     }
+
+    //与目标itemUI交换属性
+    public void Exchange(ItemUI itemUI) {
+        Item tempItem = itemUI.Item;
+        int tempAmount = itemUI.Amount;
+        itemUI.SetItem(Item, Amount);//目标的属性设置成自身持有的属性
+        SetItem(tempItem, tempAmount);
+
+    }
 }

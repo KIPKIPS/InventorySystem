@@ -19,7 +19,22 @@ public class EquipSlot : ItemSlot {
         //未持有物品
         //目标格子有装备卸下
         //目标格子无装备,返回
+        if (InventoryManager.Instance.IsPickItem) { //手上有物品
+            ItemUI pickItem = InventoryManager.Instance.PickedItem;
+            if (transform.childCount > 0) { //目标格子有物品
+                ItemUI curItemUI = transform.GetChild(0).GetComponent<ItemUI>();
+                if (pickItem.Item is Equipment) { //类型是否一致
+                    if (((Equipment)pickItem.Item).EquipmentType == equipType) { //强制转换成装备类型
+                        //交换物品
+                        curItemUI.Exchange(pickItem);
+                    } else {
+                        Debug.LogWarning("类型不一致");
+                        return;
+                    }
+                }
+            }
 
+        }
     }
 }
 

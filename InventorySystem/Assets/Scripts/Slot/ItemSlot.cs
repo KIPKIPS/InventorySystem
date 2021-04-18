@@ -135,10 +135,11 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                     // Debug.LogWarning("物品不是同一种类");
                     // return;
                     //处理交换,不分ctrl or not ctrl
-                    Item cacheCurItem = curItem.Item;
-                    int cacheAmount = curItem.Amount;
-                    curItem.SetItem(InventoryManager.Instance.PickedItem.Item, InventoryManager.Instance.PickedItem.Amount);
-                    InventoryManager.Instance.PickedItem.SetItem(cacheCurItem, cacheAmount);
+                    // Item cacheCurItem = curItem.Item;
+                    // int cacheAmount = curItem.Amount;
+                    // curItem.SetItem(InventoryManager.Instance.PickedItem.Item, InventoryManager.Instance.PickedItem.Amount);
+                    // InventoryManager.Instance.PickedItem.SetItem(cacheCurItem, cacheAmount);
+                    curItem.Exchange(InventoryManager.Instance.PickedItem);
                 }
             }
         } else { //空格子

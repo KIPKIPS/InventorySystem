@@ -92,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 0}
   equipType: 0
+  weaponType: 0
 --- !u!114 &2315786441217798961
 MonoBehaviour:
   m_ObjectHideFlags: 0
