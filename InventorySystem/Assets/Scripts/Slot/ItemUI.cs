@@ -67,7 +67,7 @@ public class ItemUI : MonoBehaviour {
         AmountText.text = Amount.ToString();
     }
 
-    public void ReduceAmount(int amount) {
+    public void ReduceAmount(int amount = 1) {
         Amount -= amount;
         Amount = amount;
         AmountText.text = Amount.ToString();
