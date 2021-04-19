@@ -52,6 +52,7 @@ public class EquipSlot : ItemSlot {
                 emptySlot = emptySlot == null ? ChestPanel.Instance.FindEmptySlot() : null;
                 if (emptySlot != null) {
                     RolePanel.Instance.PutOff(curItemUI, emptySlot);
+                    InventoryManager.Instance.HideItemTips();
                     Destroy(curItemUI.gameObject);
                 } else {
                     Debug.LogWarning("背包和箱子都没有空位置了");

@@ -16,9 +16,14 @@ public class Player : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.K)) {
             KnapsackPanel.Instance.SwitchPanelDisplayStatus();
         }
+        if (Input.GetKeyDown(KeyCode.R)) {
+            RolePanel.Instance.SwitchPanelDisplayStatus();
+        }
+
         if (Input.GetKeyDown(KeyCode.G)) {
             int id = Random.Range(1, 15);
             KnapsackPanel.Instance.StoreItem(id);
         }
+
     }
 }
