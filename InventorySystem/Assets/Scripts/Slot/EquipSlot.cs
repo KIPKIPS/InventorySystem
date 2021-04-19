@@ -45,6 +45,19 @@ public class EquipSlot : ItemSlot {
                 }
 
             }
+        } else if (eventData.button == PointerEventData.InputButton.Right && !InventoryManager.Instance.IsPickItem) {
+            if (transform.childCount > 0) {
+                ItemUI curItemUI = transform.GetChild(0).GetComponent<ItemUI>();
+                ItemSlot emptySlot = KnapsackPanel.Instance.FindEmptySlot();
+                emptySlot = emptySlot == null ? ChestPanel.Instance.FindEmptySlot() : null;
+                if (emptySlot != null) {
+                    RolePanel.Instance.PutOff(curItemUI, emptySlot);
+                    Destroy(curItemUI.gameObject);
+                } else {
+                    Debug.LogWarning("背包和箱子都没有空位置了");
+                }
+
+            }
         }
 
     }

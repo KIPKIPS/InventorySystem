@@ -158,12 +158,13 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }
         } else if (eventData.button == PointerEventData.InputButton.Right) {//右键就直接穿戴
             if (transform.childCount > 0) {
-                ItemUI curitemUI = transform.GetChild(0).GetComponent<ItemUI>();
-                if (curitemUI != null && (curitemUI.Item is Equipment || curitemUI.Item is Weapon)) {
-                    RolePanel.Instance.PutOn(curitemUI.Item);
-                    curitemUI.ReduceAmount();
-                    if (curitemUI.Amount <= 0) {
-                        Destroy(curitemUI.gameObject);
+                ItemUI curItemUI = transform.GetChild(0).GetComponent<ItemUI>();
+                if (curItemUI != null && (curItemUI.Item is Equipment || curItemUI.Item is Weapon)) {
+                    print(RolePanel.Instance == null);
+                    RolePanel.Instance.PutOn(curItemUI);
+                    curItemUI.ReduceAmount();
+                    if (curItemUI.Amount <= 0) {
+                        Destroy(curItemUI.gameObject);
                     }
                 }
             }

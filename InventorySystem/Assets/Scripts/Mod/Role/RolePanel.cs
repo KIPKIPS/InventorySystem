@@ -12,24 +12,26 @@ public class RolePanel : Inventory {
             return _instatce;
         }
     }
-    public void PutOn(Item item) {
-        Item exitItem = null;
+    public void PutOn(ItemUI itemUI) {
+        ItemUI exitItemUI = null;
         foreach (ItemSlot slot in itemSlotList) {
             EquipSlot equipSlot = (EquipSlot)slot;
-            if (equipSlot.CanDress(item)) {
+            if (equipSlot.CanDress(itemUI.Item)) {
+                print(">>>>>>>>");
                 if (equipSlot.transform.childCount > 0) { //该部位已经有装备
-                    // if (expr) {
-                    //     
-                    // }
+                    exitItemUI = equipSlot.transform.GetChild(0).GetComponent<ItemUI>();//.Item;//得到身上已有的装备
+                    //equipSlot.transform.GetChild(0).GetComponent<ItemUI>().SetItem(exitItem);
+                    itemUI.Exchange(exitItemUI);
                 } else {
-                    equipSlot.StoreItem(item);
+                    equipSlot.StoreItem(itemUI.Item);
+                    Destroy(itemUI.gameObject);
                 }
-
+                break;
             }
         }
     }
 
-    public void PutOff(Item item) {
-
+    public void PutOff(ItemUI itemUI, ItemSlot slot) {
+        slot.StoreItem(itemUI.Item);
     }
 }
